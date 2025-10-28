@@ -1,0 +1,39 @@
+{
+  "countries": [
+    "Canada"
+  ],
+  "note": "Apenas Canada está disponível no site de teste",
+  "birthDates": {
+    "adult": {
+      "day": "15",
+      "month": "March",
+      "year": "1990"
+    },
+    "young": {
+      "day": "22",
+      "month": "July", 
+      "year": "2000"
+    },
+    "senior": {
+      "day": "05",
+      "month": "December",
+      "year": "1970"
+    }
+  },
+  "addresses": [
+    {
+      "country": "Canada",
+      "address": "123 Maple Street",
+      "city": "Toronto",
+      "state": "Ontario",
+      "zipcode": "M5H 2N2"
+    },
+    {
+      "country": "United States", 
+      "address": "456 Oak Avenue",
+      "city": "New York",
+      "state": "NY",
+      "zipcode": "10001"
+    }
+  ]
+}

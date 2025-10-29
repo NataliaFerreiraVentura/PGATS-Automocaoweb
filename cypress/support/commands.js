@@ -11,9 +11,10 @@
 // Importa o cypress-xpath para usar seletores XPath
 require('cypress-xpath')
 //
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+Cypress.Commands.add('NavegarParaLogin', () => { 
+    cy.get('a[href="/login"]').should('be.visible').click()
+
+})
 //
 //
 // -- This is a child command --

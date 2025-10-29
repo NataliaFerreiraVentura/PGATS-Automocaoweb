@@ -1,0 +1,18 @@
+{
+  "validUser": {
+    "name": "naty",
+    "email": "testenaty96@gmail.com",
+    "password": "Teste@12"
+  },
+  
+  "invalidCredentials": [
+    {
+      "email": "usuario@inexistente.com",
+      "password": "senhaErrada123"
+    },
+    {
+      "email": "testenaty96@gmail.com",
+      "password": "senhaIncorreta"
+    }
+  ]
+}

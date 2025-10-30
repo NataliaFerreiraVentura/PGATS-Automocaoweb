@@ -1,8 +1,11 @@
 import { createNewUserData,getTestUser } from '../support/helpers';
 import { } from '../fixtures/testData.json';
+import userData from '../fixtures/support.json';
 import menu from '../Modules/Menu';
 import cadastro from '../Modules/Cadastro';
 import login from '../Modules/Login';
+import contato from '../Modules/Contato';
+
 
 describe('Automation Exercise Test Suite', () => {
     let testData; 
@@ -93,5 +96,18 @@ describe('Automation Exercise Test Suite', () => {
         // ASSERT - Verificar mensagem de erro
         cy.contains('Email Address already exist!').should('be.visible');
     });
+
+   it('Enviar uma formulario com upload de arquivo', () => {
+    // ARRANGE - Preparar dados do formulário de contato
+    menu.navegarParaMenuContato();
+    
+    // ACT - Preencher o formulário de contato
+    contato.preencherFormularioContato(userData);
+
+    //ASSERT verificar se estamos na pagina correta e mensagem de sucesso
+    cy.get('.status').should('be.visible')
+    cy.get('.status').should('have.text', 'Success! Your details have been submitted successfully.')
+ 
+  })
 
 });

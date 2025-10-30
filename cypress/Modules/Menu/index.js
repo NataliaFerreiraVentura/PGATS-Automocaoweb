@@ -7,6 +7,10 @@ class Menu{
        cy.get('a[href="/logout"]').should('be.visible').click()
     }
 
+    navegarParaMenuContato() {
+        cy.get('a[href="/contact_us"]').should('be.visible').click();
+    }
+
 }
 
 export default new Menu();

@@ -83,7 +83,7 @@ describe('Automation Exercise Test Suite', () => {
         cy.get('a[href="/login"]').should('contain', 'Signup / Login');
     });
 
-    it.only('Registrar usuário com e-mail existente', () => {
+    it('Registrar usuário com e-mail existente', () => {
         // ARRANGE - Usar dados de usuário já existente e navegar para cadastro
         const existingUser = testData.validUser;
 

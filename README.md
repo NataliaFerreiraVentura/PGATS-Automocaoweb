@@ -419,13 +419,12 @@ npm run cy:run:headless
 
 ---
 
-## 📞 Suporte
+### 📬 Para dúvidas ou sugestões:
 
-Para dúvidas ou sugestões:
+- 📧 **Email:** [nataliaferreiraventura@gmail.com](mailto:nataliaferreiraventura@gmail.com)  
+- 🐙 **GitHub:** [@NataliaFerreiraVentura](https://github.com/NataliaFerreiraVentura)  
+- 💼 **LinkedIn:** [Natalia Ferreira Ventura](https://www.linkedin.com/in/natalia-ferreira-ventura-a3327b15b/)
 
-- 📧 **Email:** [@nataliaferreiraventura@gmail.com]
-- 🐙 **GitHub:** [@NataliaFerreiraVentura](https://github.com/NataliaFerreiraVentura)
-- 💼 **LinkedIn:** [@https://www.linkedin.com/in/natalia-ferreira-ventura-a3327b15b/]
 
 ---
 

@@ -269,7 +269,7 @@ open cypress/reports/html/index.html
 
 ## 👥 Autor
 
-**👨‍🎓 Estudante:** [Seu Nome]  
+**👨‍🎓 Estudante:** Natalia Ferreira   
 **🏫 Instituição:** PGATS - Pós Graduação  
 **📚 Disciplina:** Automação de Testes na Camada de Interface (Web)  
 **📅 Período:** 2025
@@ -280,9 +280,9 @@ open cypress/reports/html/index.html
 
 Para dúvidas ou sugestões:
 
-- 📧 **Email:** [seu-email@exemplo.com]
+- 📧 **Email:** [@nataliaferreiraventura@gmail.com]
 - 🐙 **GitHub:** [@NataliaFerreiraVentura](https://github.com/NataliaFerreiraVentura)
-- 💼 **LinkedIn:** [Seu Perfil]
+- 💼 **LinkedIn:** [@https://www.linkedin.com/in/natalia-ferreira-ventura-a3327b15b/]
 
 ---
 

@@ -4,15 +4,19 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Cypress
+# Cypress - Arquivos grandes que não devem ser versionados
 cypress/videos/
 cypress/screenshots/
 cypress/downloads/
-cypress//reports/
+cypress/reports/
+cypress.env.json
+docs/
+# Cache do Cypress
+.cypress/
 # Logs
 *.log
 logs/
-
+scripts/
 # Cache
 .cache/
 .npm/

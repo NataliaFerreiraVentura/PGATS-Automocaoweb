@@ -4,7 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:headless": "cypress run --headless --browser electron",
+    "cy:run:chrome": "cypress run --browser chrome",
+    "cy:clean": "node scripts/cleanup.js",
+    "cy:clean:force": "node scripts/cleanup.js 1",
+    "cy:size": "node -e \"const {getProjectSize} = require('./scripts/cleanup.js'); console.log('📊 Tamanho atual dos arquivos de teste:', getProjectSize(), 'MB')\"",
+    "cy:status": "node scripts/status.js",
+    "precy:run": "npm run cy:clean",
+    "postcy:run": "npm run cy:status"
   },
   "keywords": [],
   "author": "",

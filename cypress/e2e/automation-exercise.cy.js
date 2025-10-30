@@ -23,6 +23,8 @@ describe('Automation Exercise Test Suite', () => {
     // ARRANGE - Preparar dados do usuário e navegar para página de cadastro
     const newUser = createNewUserData();
     cy.get('a[href="/login"]').click();
+    cy.get('.login-form').should('be.visible')
+    cy.captureStep('tela-cadastro');
 
     // ACT - Executar cadastro (pré-cadastro + cadastro completo)
     // Passo 1: Preenchimento inicial para acessar formulário completo
@@ -53,12 +55,14 @@ describe('Automation Exercise Test Suite', () => {
     cy.url().should('include', '/account_created');
     cy.contains('b', 'Account Created!');
     cy.get('[data-qa="continue-button"]').should('be.visible');
+    cy.captureStep('conta-criada-sucesso');
   });
 
   it('Login de usuario com email e senha corretos', () => {
     // ARRANGE - Preparar dados do usuário válido e navegar para login
     const validUser = testData.validUser;
     cy.get('a[href="/login"]').click();
+    cy.get('.login-form').should('be.visible')
 
     // ACT - Executar o login com credenciais válidas
     cy.get('[data-qa="login-email"]').type(validUser.email);
@@ -69,12 +73,14 @@ describe('Automation Exercise Test Suite', () => {
     cy.get('a[href="/logout"]').should('be.visible');
     cy.get('i.fa-user').parent().should('contain', validUser.name);
     cy.contains(`Logged in as ${validUser.name}`).should('be.visible');
+    cy.captureStep('usuario-logado-sucesso');
   });
 
   it('Login de usuário com e-mail e senha incorretos', () => {
     // ARRANGE - Preparar credenciais inválidas e navegar para login
     const invalidUser = testData.invalidCredentials[0];
     cy.get('a[href="/login"]').click();
+    cy.get('.login-form').should('be.visible')
 
     // ACT - Tentar fazer login com credenciais incorretas
     cy.get('[data-qa="login-email"]').type(invalidUser.email);
@@ -83,20 +89,24 @@ describe('Automation Exercise Test Suite', () => {
 
     // ASSERT - Verificar se a mensagem de erro é exibida
     cy.get('.login-form > form > p').should('contain', 'Your email or password is incorrect!');
+    cy.captureStep('erro-credenciais-invalidas');
   });
 
   it('Registrar usuário com e-mail existente', () => {
     // ARRANGE - Usar dados de usuário já existente e navegar para cadastro
     const existingUser = testData.validUser;
     cy.get('a[href="/login"]').click();
+    cy.captureStep('01-tela-login');
 
     // ACT - Tentar cadastrar com email já existente
     cy.get('[data-qa="signup-name"]').type(existingUser.name);
     cy.get('[data-qa="signup-email"]').type(existingUser.email);
     cy.get('[data-qa="signup-button"]').click();
+    cy.captureStep('02-tentativa-cadastro-email-existente');
 
     // ASSERT - Verificar mensagem de erro
     cy.contains('Email Address already exist!').should('be.visible');
+    cy.captureStep('03-mensagem-erro-email-existente');
   });
 
   it('Sair do usuário logado', () => {
@@ -106,14 +116,17 @@ describe('Automation Exercise Test Suite', () => {
     cy.get('[data-qa="login-email"]').type(validUser.email);
     cy.get('[data-qa="login-password"]').type(validUser.password);
     cy.get('[data-qa="login-button"]').click();
+    cy.captureStep('01-usuario-logado');
 
     // ACT - Executar logout do sistema
     cy.get('a[href="/logout"]').click();
+    cy.captureStep('02-apos-logout');
 
     // ASSERT - Verificar se o logout foi realizado com sucesso
     cy.url().should('include', '/login');
     cy.get('a[href="/logout"]').should('not.exist');
     cy.get('a[href="/login"]').should('contain', 'Signup / Login');
+    cy.captureStep('03-logout-realizado-com-sucesso');
   });
 
   it('Enviar uma formulario com upload de arquivo', () => {
@@ -129,6 +142,7 @@ describe('Automation Exercise Test Suite', () => {
 
     cy.get('.status').should('be.visible')
     cy.get('.status').should('have.text', 'Success! Your details have been submitted successfully.')
+    cy.captureStep('formulario-enviado-sucesso');
  
   })
 

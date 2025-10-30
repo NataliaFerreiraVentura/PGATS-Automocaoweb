@@ -16,5 +16,16 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+// Configuração simples para screenshots consistentes
+beforeEach(() => {
+    // Aguarda página carregar completamente
+    cy.document().should('have.property', 'readyState', 'complete')
+    
+    // Desabilita animações para capturas estáveis
+    cy.get('body').then(($body) => {
+        $body.css({
+            'animation-duration': '0s',
+            'transition-duration': '0s'
+        })
+    })
+})

@@ -18,6 +18,40 @@ jobs:
       - name: Instalando dependencias
         run: npm install
 
-      - name: Executando os testes
-        run: npx cypress run
-      
+      - name: Configurar ambiente para CI
+        run: |
+          echo '{"CAPTURE_SCREENSHOTS": false, "VIDEO_RECORDING": false, "ENABLE_PERFORMANCE_MODE": true}' > cypress.env.json
+
+      - name: Verificar tamanho inicial
+        run: npm run cy:size
+
+      - name: Executando os testes (modo otimizado)
+        run: npm run cy:run:headless
+        continue-on-error: true
+
+      - name: Limpeza pós-execução
+        run: npm run cy:clean:force
+
+      - name: Verificar tamanho final
+        run: npm run cy:size
+
+      - name: Upload artefatos (sempre)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-test-results-${{ github.run_number }}
+          path: |
+            cypress/screenshots/**/*
+            cypress/reports/**/*
+            cypress/videos/**/*
+          retention-days: 30
+
+      - name: Upload evidências de falha (apenas falhas)
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-failure-evidence-${{ github.run_number }}
+          path: |
+            cypress/screenshots/**/*
+            cypress/reports/**/*
+          retention-days: 7

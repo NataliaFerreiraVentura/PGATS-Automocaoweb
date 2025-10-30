@@ -183,34 +183,80 @@ npm install
 ### **▶️ Execução dos Testes:**
 
 ```bash
-# Executar todos os testes (headless)
-npm run cy:run
+# �️ Interface gráfica para desenvolvimento
+npm run cy:open          # Modo interativo para desenvolvimento
 
-# Abrir interface gráfica do Cypress
-npm run cy:open
+# � Execução em modo headless
+npm run cy:run           # Execução completa dos testes
 
-# Executar teste específico
+# ⚡ Execução otimizada para CI/CD
+npm run cy:run:headless  # Modo headless otimizado
+
+# 🎯 Execução específica por navegador
+npm run cy:run:chrome    # Execução no navegador Chrome
+```
+
+### **🎯 Execução por Arquivo Específico:**
+
+```bash
+# Arquivo tradicional
 npx cypress run --spec "cypress/e2e/automation-exercise.cy.js"
 
-# Executar testes com módulos
+# Arquivo com módulos
 npx cypress run --spec "cypress/e2e/automation-excercise-modules.cy.js"
+
+# Todos os arquivos com configurações otimizadas
+npx cypress run --config video=false,screenshotOnRunFailure=true
 ```
 
 ---
 
-## 📊 Relatórios de Teste
+## 📊 Relatórios e Artefatos de Teste
 
-O projeto gera relatórios automáticos em HTML usando **Mochawesome**:
+### **📈 Relatórios Automáticos:**
 
-- 📁 **Local dos relatórios:** `cypress/reports/html/`
-- 📄 **Arquivo principal:** `index.html`
-- 📸 **Screenshots:** Capturados automaticamente em falhas
+O projeto gera relatórios completos usando **Mochawesome**:
 
-### **Visualizar Relatórios:**
+- 📁 **Local:** `cypress/reports/html/index.html`
+- � **Métricas:** Testes passados/falhou, tempo de execução, detalhes por teste
+- 📸 **Screenshots:** Capturados automaticamente em momentos críticos
+- 🎥 **Vídeos:** Gravação opcional para debug (configurável)
+
+### **🤖 Artefatos no CI/CD:**
+
+**GitHub Actions** automaticamente coleta e disponibiliza:
+
+| Artefato                         | Quando        | Retenção | Conteúdo                                       |
+| -------------------------------- | ------------- | -------- | ---------------------------------------------- |
+| `cypress-test-results-{run}`     | Sempre        | 30 dias  | Screenshots, relatórios HTML, vídeos           |
+| `cypress-failure-evidence-{run}` | Apenas falhas | 7 dias   | Screenshots e relatórios de falhas específicas |
+
+### **📱 Acesso aos Artefatos:**
+
+1. **GitHub Actions** → Workflow executado
+2. **Artifacts** (seção no final da página)
+3. **Download** do arquivo ZIP
+4. **Extrair** e abrir `reports/html/index.html`
+
+### **🔍 Visualização Local:**
 
 ```bash
-# Após executar os testes
-open cypress/reports/html/index.html
+# Abrir relatório HTML local
+npm run cy:run && open cypress/reports/html/index.html
+
+# Verificar screenshots capturados
+ls cypress/screenshots/
+```
+
+### **📊 Visualização dos Resultados:**
+
+Os relatórios são gerados automaticamente após cada execução:
+
+```
+cypress/
+├── screenshots/     # Capturas de tela dos testes
+├── reports/         # Relatórios HTML detalhados
+└── videos/          # Gravações de execução (opcional)
 ```
 
 ---
@@ -247,6 +293,103 @@ open cypress/reports/html/index.html
 
 ---
 
+## 🚀 Melhorias e Otimizações Implementadas
+
+### **🔧 Configurações Otimizadas do Cypress:**
+
+- ✅ **Gestão de memória** otimizada para melhor performance
+- ✅ **Configurações de viewport** padronizadas (1280x720)
+- ✅ **Timeouts otimizados** para execução mais rápida
+- ✅ **Compressão de vídeo** configurável para economia de espaço
+
+### **📸 Sistema de Capturas Inteligente:**
+
+```javascript
+// Capturas condicionais baseadas no ambiente
+cy.captureStep("login-sucesso"); // Screenshot em momento crítico
+cy.captureElement(".status", "resultado"); // Captura elemento específico
+
+// Configurações automáticas por ambiente
+// Desenvolvimento: Screenshots habilitados
+// CI/CD: Apenas capturas em falhas
+```
+
+### **🤖 Automação de CI/CD:**
+
+O projeto inclui **GitHub Actions** otimizado com:
+
+- 🔄 **Configuração automática** de ambiente para CI/CD
+- **Upload de artefatos** apenas em caso de falhas
+- ⚡ **Execução em modo headless** para performance máxima
+
+```yaml
+# Exemplo de configuração no CI/CD
+- name: Configurar ambiente para CI
+  run: |
+    echo '{"CAPTURE_SCREENSHOTS": false, "VIDEO_RECORDING": false}' > cypress.env.json
+
+- name: Upload evidências de falha (apenas falhas)
+  uses: actions/upload-artifact@v4
+  if: failure()
+  with:
+    name: cypress-failure-evidence-${{ github.run_number }}
+    path: |
+      cypress/screenshots/**/*
+      cypress/reports/**/*
+    retention-days: 7
+```
+
+### **⚡ Comandos de Execução:**
+
+**Comandos disponíveis:**
+
+| Comando                   | Descrição                     | Uso                     |
+| ------------------------- | ----------------------------- | ----------------------- |
+| `npm run cy:open`         | Interface gráfica do Cypress  | �️ Desenvolvimento      |
+| `npm run cy:run`          | Execução completa dos testes  | � Execução padrão       |
+| `npm run cy:run:headless` | Execução otimizada sem UI     | ⚡ Performance máxima   |
+| `npm run cy:run:chrome`   | Execução específica no Chrome | 🎯 Navegador específico |
+
+**Exemplo de uso:**
+
+```bash
+# Desenvolvimento com interface gráfica
+npm run cy:open
+
+# Execução completa dos testes
+npm run cy:run
+
+# Execução otimizada para CI/CD
+npm run cy:run:headless
+```
+
+### **📊 Monitoramento de Execução:**
+
+**Saídas dos testes:**
+
+- � **Screenshots**: Capturados automaticamente em falhas
+- 📁 **Relatórios**: Gerados em formato HTML após execução
+- 🎥 **Vídeos**: Disponíveis quando habilitados na configuração
+
+### **🔄 Integração Contínua:**
+
+**Fluxo otimizado:**
+
+1. 📥 **Clone** do repositório
+2. 📦 **Instalação** de dependências
+3. ⚙️ **Configuração** automática para CI/CD
+4. 🧪 **Execução** dos testes em modo otimizado
+5. **Upload** de evidências (apenas falhas)
+
+**Benefícios:**
+
+- ⚡ **Execução otimizada** para ambientes de CI/CD
+- 💾 **Artefatos seletivos** apenas quando necessário
+- 🎯 **Upload inteligente** baseado em resultados
+- 📊 **Visibilidade** completa do processo
+
+---
+
 ## 🎯 Resultados Alcançados
 
 ### **📈 Métricas do Projeto:**
@@ -280,9 +423,9 @@ open cypress/reports/html/index.html
 
 Para dúvidas ou sugestões:
 
-- 📧 **Email:** [seu-email@exemplo.com]
+- 📧 **Email:** [nataliaferreiraventura@gmail.com](mailto:nataliaferreiraventura@gmail.com)
 - 🐙 **GitHub:** [@NataliaFerreiraVentura](https://github.com/NataliaFerreiraVentura)
-- 💼 **LinkedIn:** [Seu Perfil]
+- 💼 **LinkedIn:** [Natalia Ferreira Ventura](https://www.linkedin.com/in/natalia-ferreira-ventura-a3327b15b/)
 
 ---
 

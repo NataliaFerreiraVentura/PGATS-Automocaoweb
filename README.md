@@ -412,7 +412,7 @@ npm run cy:run:headless
 
 ## 👥 Autor
 
-**👨‍🎓 Estudante:** [Seu Nome]  
+**👨‍🎓 Estudante:** Natalia Ferreira   
 **🏫 Instituição:** PGATS - Pós Graduação  
 **📚 Disciplina:** Automação de Testes na Camada de Interface (Web)  
 **📅 Período:** 2025
@@ -423,9 +423,9 @@ npm run cy:run:headless
 
 Para dúvidas ou sugestões:
 
-- 📧 **Email:** [nataliaferreiraventura@gmail.com](mailto:nataliaferreiraventura@gmail.com)
+- 📧 **Email:** [@nataliaferreiraventura@gmail.com]
 - 🐙 **GitHub:** [@NataliaFerreiraVentura](https://github.com/NataliaFerreiraVentura)
-- 💼 **LinkedIn:** [Natalia Ferreira Ventura](https://www.linkedin.com/in/natalia-ferreira-ventura-a3327b15b/)
+- 💼 **LinkedIn:** [@https://www.linkedin.com/in/natalia-ferreira-ventura-a3327b15b/]
 
 ---
 

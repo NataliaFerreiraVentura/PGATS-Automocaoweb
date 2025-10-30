@@ -1,8 +1,8 @@
 import { createNewUserData,getTestUser } from '../support/helpers';
 import { } from '../fixtures/testData.json';
-import userData from '../fixtures/support.json';
+import userData from '../fixtures/formContact.json';
 import menu from '../Modules/Menu';
-import cadastro from '../Modules/Cadastro';
+import cadastro from '../Modules/Cadastro/index.js';
 import login from '../Modules/Login';
 import contato from '../Modules/Contato';
 

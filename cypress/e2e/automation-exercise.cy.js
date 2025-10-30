@@ -2,7 +2,7 @@
 
 import { createNewUserData,getTestUser } from '../support/helpers';
 import { } from '../fixtures/testData.json';
-import userData from '../fixtures/support.json';
+import userData from '../fixtures/formContact.json';
 
 describe('Automation Exercise Test Suite', () => {
   let testData;
